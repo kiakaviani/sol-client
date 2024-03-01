@@ -104,47 +104,45 @@ async function main() {
   const user = await initializeKeypair(connection)
 
   //const mint = await createNewMint(connection, user, user.publicKey, user.publicKey, 2);
-  const mint = new web3.PublicKey('82Dfc2Tur1T71NxEmk5SAsJtSkd9XDZedJrfX9sEdd3L');
+  const mint = new web3.PublicKey('B9RGYT6FLv9tjCgHe5VzDhcMAwqfyPp33vgp3XEZh3F');
 
-  //const mintInfo = await token.getMint(connection, mint);
+  const mintInfo = await token.getMint(connection, mint);
   //console.log("Main: mintInfo = ", mintInfo);
 
-  //const associatedTokenAccount = await createAssociatedTokenAccount(connection, user, mint, user.publicKey);
+  const associatedTokenAccount = await createAssociatedTokenAccount(connection, user, mint, user.publicKey);
   //const associatedTokenAccount = new web3.PublicKey('DmAofCbdT164tTodvtUd2QAGJR8wMuzzXgVf6JLXASJ9');
   //console.log("Main: associatedTokenAccount = ", associatedTokenAccount);
 
   //await mintTokens(connection, user, mint, associatedTokenAccount, user, 1700 * 10 ** mintInfo.decimals);
 
   //const receiver = web3.Keypair.generate().publicKey;
-  //const receiver = new web3.PublicKey('GKp9TdTmQ9HBVYezABs7ikfFs7DmLeHHnB2ZXGPgGsKA');
-  //const receiverTokenAccount = await createAssociatedTokenAccount(connection, user, mint, receiver);
+  const receiver = new web3.PublicKey('GKp9TdTmQ9HBVYezABs7ikfFs7DmLeHHnB2ZXGPgGsKA');
+  const receiverTokenAccount = await createAssociatedTokenAccount(connection, user, mint, receiver);
 
   //const delegate = web3.Keypair.generate();
   //await approveDelegate(connection, user, associatedTokenAccount, delegate.publicKey, user.publicKey, 50 * 10 ** mintInfo.decimals);
 
   //await transferTokens(connection, user, associatedTokenAccount, receiverTokenAccount.address, delegate, 50 * 10 ** mintInfo.decimals);
-  //await transferTokens(connection, user, associatedTokenAccount, receiverTokenAccount.address, user.publicKey, 5 * 10 ** mintInfo.decimals);
+  //await transferTokens(connection, user, associatedTokenAccount.address, receiverTokenAccount.address, user, 5 * 10 ** mintInfo.decimals);
 
   //await revokeDelegate(connection, user, associatedTokenAccount, user.publicKey);
 
-  // await burnTokens(connection, user, associatedTokenAccount, mint, user, 5 * 10 ** mintInfo.decimals);
+  //await burnTokens(connection, user, associatedTokenAccount.address, mint, user, 5 * 10 ** mintInfo.decimals);
 
-  // await disableMint(connection, user, mint);
+  //await disableMint(connection, user, mint);
 
   //await grantFreezeAuthotiry(connection, user, mint, associatedTokenAccount);
 
-  // await disableFreeze(connection, user, mint);
+  await disableFreeze(connection, user, mint);
 
   //await getAllWalletAccounts(connection, 'Bi5HEDiXnCZmQ12298k4a3MUSzVGfqUeUL1XjTtHB8w7');
   await getTokenLargestAccounts(connection, mint);
 }
 
-main()
-  .then(() => {
-    console.log("Finished successfully")
-    process.exit(0)
-  })
-  .catch((error) => {
-    console.log(error)
-    process.exit(1)
-  })
+main().then(() => {
+  console.log("Finished successfully")
+  process.exit(0)
+}).catch((error) => {
+  console.log(error)
+  process.exit(1)
+})

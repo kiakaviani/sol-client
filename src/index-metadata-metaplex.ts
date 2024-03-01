@@ -8,19 +8,18 @@ import * as mpl_umi_bundle from "@metaplex-foundation/umi-bundle-defaults";
 import * as mpl_umi from "@metaplex-foundation/umi";
 import * as mpl_candy_machine from "@metaplex-foundation/mpl-candy-machine";
 import dotenv from "dotenv"
+import { initializeKeypair } from './initializeKeypair';
 dotenv.config()
 
-
+async function main() {
     const endpoint = web3.clusterApiUrl('devnet');
     const connection = new web3.Connection(endpoint, {
         commitment: "confirmed",
     });
-    const umi = mpl_umi_bundle.createUmi(endpoint);
-
-    const secret = JSON.parse(process.env.PRIVATE_KEY ?? "") as number[];
-    const secretKey = Uint8Array.from(secret);
-
-    const userWallet = umi.eddsa.createKeypairFromSecretKey(secretKey);
+    const umi = mpl_umi_bundle.createUmi(connection);
+    const user = await initializeKeypair(connection);
+    const userSecretKey = Uint8Array.from(user.secretKey);
+    const userWallet = umi.eddsa.createKeypairFromSecretKey(userSecretKey);
     const userWalletSigner = mpl_umi.createSignerFromKeypair(umi, userWallet);
 
     const metadata = {
@@ -33,7 +32,7 @@ dotenv.config()
     umi.use(mpl_umi.signerIdentity(userWalletSigner));
     umi.use(mpl_candy_machine.mplCandyMachine())
 
-    mpl.createAndMint(umi, {
+    const tx = await mpl.createAndMint(umi, {
         mint,
         authority: umi.identity,
         name: metadata.name,
@@ -44,10 +43,19 @@ dotenv.config()
         amount: 1000000_00000000,
         tokenOwner: userWallet.publicKey,
         tokenStandard: mpl.TokenStandard.Fungible,
-    }).sendAndConfirm(umi).then(() => {
-        console.log("Successfully minted token: ", mint.publicKey);
-    });
+        isMutable: false,
+    }).sendAndConfirm(umi);
+    console.log("Main: Mint Transaction: ", new TextDecoder().decode(tx.signature));
+    console.log("Main: Mint Token: ", mint.publicKey);
+}
 
+main().then(() => {
+    console.log("Finished successfully")
+    process.exit(0)
+}).catch((error) => {
+    console.log(error)
+    process.exit(1)
+})
 
 
 

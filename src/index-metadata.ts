@@ -287,12 +287,10 @@ async function main() {
     // await getTokenLargestAccounts(connection, mint);
 }
 
-main()
-    .then(() => {
-        console.log("Finished successfully")
-        process.exit(0)
-    })
-    .catch((error) => {
-        console.log(error)
-        process.exit(1)
-    })
+main().then(() => {
+    console.log("Finished successfully")
+    process.exit(0)
+}).catch((error) => {
+    console.log(error)
+    process.exit(1)
+})
