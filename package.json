@@ -6,7 +6,10 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "start-metadata": "ts-node src/index-metadata.ts",
-    "start-metadata-metaplex": "ts-node src/index-metadata-metaplex.ts"
+    "start-metadata-metaplex": "ts-node src/index-metadata-metaplex.ts",
+    "start-raydium": "ts-node src/raydium-sdk.ts",
+    "start-raydium-pool-listener": "ts-node src/raydium-pool-listener.ts",
+    "start-raydium-pool-final": "ts-node src/raydium-pool-final.ts"
   },
   "keywords": [],
   "author": "test",
@@ -20,9 +23,12 @@
     "@metaplex-foundation/mpl-token-metadata": "^3.2.0",
     "@metaplex-foundation/umi": "^0.9.1",
     "@metaplex-foundation/umi-bundle-defaults": "^0.9.1",
+    "@project-serum/serum": "^0.13.65",
+    "@raydium-io/raydium-sdk": "^1.3.1-beta.50",
     "@solana/spl-token": "^0.3.11",
     "@solana/spl-token-metadata": "^0.1.2",
     "@solana/web3.js": "^1.73.0",
+    "@types/bn.js": "^5.1.5",
     "bs58": "^5.0.0",
     "dotenv": "^16.0.1"
   }
