@@ -7,9 +7,11 @@ import * as mpl_umi_bundle from "@metaplex-foundation/umi-bundle-defaults";
 import * as mpl_umi from "@metaplex-foundation/umi";
 import * as mpl_candy_machine from "@metaplex-foundation/mpl-candy-machine";
 
-import { LIQUIDITY_STATE_LAYOUT_V4, Liquidity, LiquidityPoolJsonInfo, LiquidityPoolKeys, LiquidityPoolKeysV4, MARKET_STATE_LAYOUT_V3, Market, Percent, SPL_MINT_LAYOUT, Token, TokenAmount, jsonInfo2PoolKeys } from "@raydium-io/raydium-sdk";
+import { LIQUIDITY_STATE_LAYOUT_V4, Liquidity, LiquidityPoolJsonInfo, LiquidityPoolKeys, LiquidityPoolKeysV4, LiquidityPoolStatus, MARKET_STATE_LAYOUT_V3, Market, Percent, SPL_ACCOUNT_LAYOUT, SPL_MINT_LAYOUT, Token, TokenAccount, TokenAmount, jsonInfo2PoolKeys } from "@raydium-io/raydium-sdk";
 
 import * as token from '@solana/spl-token'
+import { OpenOrders } from "@project-serum/serum";
+import BN from "bn.js";
 
 const RAYDIUM_POOL_V4_PROGRAM_ID = '675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8';
 const SERUM_OPENBOOK_PROGRAM_ID = 'srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX';
@@ -27,7 +29,7 @@ async function main() {
     const umi = mpl_umi_bundle.createUmi(connection);
 
     //await subscribeToNewRaydiumPools(connection, umi);
-    
+
     //////////////////////////////////////////////////////////////////
     const poolId = new web3.PublicKey('3tfrsu4KcTmgDyRrarnjT8trv9EgseF51KZSxsaujvru');
     console.log(poolId.toString());
@@ -104,6 +106,9 @@ async function formatAmmKeysById(connection: web3.Connection, id: web3.PublicKey
     const account = await connection.getAccountInfo(id);
 
     if (account === null) throw Error(' get id info error ')
+
+    await parsePoolInfo(connection, account);
+
     const info = LIQUIDITY_STATE_LAYOUT_V4.decode(account.data)
 
     const marketId = info.marketId
@@ -144,6 +149,62 @@ async function formatAmmKeysById(connection: web3.Connection, id: web3.PublicKey
         marketEventQueue: marketInfo.eventQueue.toString(),
         lookupTableAccount: web3.PublicKey.default.toString()
     } as LiquidityPoolJsonInfo;
+}
+
+export async function parsePoolInfo(connection: web3.Connection, laccount: web3.AccountInfo<Buffer>) {
+    const poolState = LIQUIDITY_STATE_LAYOUT_V4.decode(laccount.data);
+    const openOrders = await OpenOrders.load(
+        connection,
+        poolState.openOrders,
+        new web3.PublicKey(SERUM_OPENBOOK_PROGRAM_ID)
+      );
+    
+      const baseDecimal = 10 ** poolState.baseDecimal.toNumber(); // e.g. 10 ^ 6
+      const quoteDecimal = 10 ** poolState.quoteDecimal.toNumber();
+    
+      const baseTokenAmount = await connection.getTokenAccountBalance(
+        poolState.baseVault
+      );
+      const quoteTokenAmount = await connection.getTokenAccountBalance(
+        poolState.quoteVault
+      );
+    
+      const basePnl = poolState.baseNeedTakePnl.toNumber() / baseDecimal;
+      const quotePnl = poolState.quoteNeedTakePnl.toNumber() / quoteDecimal;
+    
+      const openOrdersBaseTokenTotal =
+        openOrders.baseTokenTotal.toNumber() / baseDecimal;
+      const openOrdersQuoteTokenTotal =
+        openOrders.quoteTokenTotal.toNumber() / quoteDecimal;
+    
+      const base =
+        (baseTokenAmount.value?.uiAmount || 0) + openOrdersBaseTokenTotal - basePnl;
+      const quote =
+        (quoteTokenAmount.value?.uiAmount || 0) +
+        openOrdersQuoteTokenTotal -
+        quotePnl;
+    
+      const denominator = new BN(10).pow(poolState.baseDecimal);
+      //const addedLpAccount = tokenAccounts.find((a) => a.accountInfo.mint.equals(poolState.lpMint));
+
+      console.log('====================================================================');
+      console.log("parsePoolInfo: ");
+      console.log("pool total base: ", base);
+      console.log("pool total quote: ", quote);
+      console.log("base vault balance: ", baseTokenAmount.value.uiAmount);
+      console.log("quote vault balance: ", quoteTokenAmount.value.uiAmount);
+      console.log("base tokens in openorders: ", openOrdersBaseTokenTotal);
+      console.log("quote tokens in openorders: ", openOrdersQuoteTokenTotal);
+      console.log("base token decimals: ", poolState.baseDecimal.toNumber());
+      console.log("quote token decimals: ", poolState.quoteDecimal.toNumber());
+      console.log("total lp: ", poolState.lpReserve.div(denominator).toString());
+      //const tokenResp = await connection.getTokenAccountsByOwner(owner, { programId: token.TOKEN_PROGRAM_ID });
+      //const tokenAccounts: TokenAccount[] = [];
+      //for (const { pubkey, account } of tokenResp.value) {
+      //  tokenAccounts.push({ programId: token.TOKEN_PROGRAM_ID, pubkey, accountInfo: SPL_ACCOUNT_LAYOUT.decode(account.data) });
+      //}
+      //const addedLpAccount = tokenAccounts.find((a) => a.accountInfo.mint.equals(poolState.lpMint));
+      //console.log("addedLpAmount: ", (addedLpAccount?.accountInfo.amount.toNumber() || 0) / baseDecimal);
 }
 
 export async function calcAmountOut(connection: web3.Connection, poolKeys: LiquidityPoolKeys, rawAmountIn: number, swapInDirection: boolean) {
