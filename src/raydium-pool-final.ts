@@ -31,7 +31,8 @@ async function main() {
     //await subscribeToNewRaydiumPools(connection, umi);
 
     //////////////////////////////////////////////////////////////////
-    const poolId = new web3.PublicKey('3tfrsu4KcTmgDyRrarnjT8trv9EgseF51KZSxsaujvru');
+
+    const poolId = new web3.PublicKey('FFgH6WdgK8L3jube2iUxmnAUoN3zrzuZzJXd98zmE93X');
     console.log(poolId.toString());
     //////////////////////////////////////////////////////////////////
     const targetPoolInfo = await formatAmmKeysById(connection, poolId);
@@ -80,8 +81,6 @@ async function PrintData(connection: web3.Connection, umi: mpl_umi.Umi, updatedA
 
     if (!liquidity.baseMint.toString().includes('11111111111111111111111111111111')) {
         try {
-            const mint = mpl_umi.publicKey(liquidity.baseMint);
-            const asset = await mpl.fetchDigitalAsset(umi, mint);
             console.log('====================================================================');
             console.log("accountId: ", updatedAccountInfo.accountId.toString());
             console.log("owner: ", updatedAccountInfo.accountInfo.owner.toString());
@@ -91,6 +90,8 @@ async function PrintData(connection: web3.Connection, umi: mpl_umi.Umi, updatedA
             //console.log(liquidity ? liquidity : 'None');
             console.log(liquidity.baseMint.toString());
             console.log('Metaplex Asset------------------------------------------------------');
+            const mint = mpl_umi.publicKey(liquidity.baseMint);
+            const asset = await mpl.fetchDigitalAsset(umi, mint);
             console.log(asset);
             console.log('Market--------------------------------------------------------------');
             const marketAccountInfo = await connection.getAccountInfo(updatedAccountInfo.accountId);
@@ -104,7 +105,7 @@ async function PrintData(connection: web3.Connection, umi: mpl_umi.Umi, updatedA
 
 async function formatAmmKeysById(connection: web3.Connection, id: web3.PublicKey) {
     const account = await connection.getAccountInfo(id);
-
+    console.log("account space: ", account?.data.length);
     if (account === null) throw Error(' get id info error ')
 
     await parsePoolInfo(connection, account);
@@ -157,54 +158,54 @@ export async function parsePoolInfo(connection: web3.Connection, laccount: web3.
         connection,
         poolState.openOrders,
         new web3.PublicKey(SERUM_OPENBOOK_PROGRAM_ID)
-      );
-    
-      const baseDecimal = 10 ** poolState.baseDecimal.toNumber(); // e.g. 10 ^ 6
-      const quoteDecimal = 10 ** poolState.quoteDecimal.toNumber();
-    
-      const baseTokenAmount = await connection.getTokenAccountBalance(
+    );
+
+    const baseDecimal = 10 ** poolState.baseDecimal.toNumber(); // e.g. 10 ^ 6
+    const quoteDecimal = 10 ** poolState.quoteDecimal.toNumber();
+
+    const baseTokenAmount = await connection.getTokenAccountBalance(
         poolState.baseVault
-      );
-      const quoteTokenAmount = await connection.getTokenAccountBalance(
+    );
+    const quoteTokenAmount = await connection.getTokenAccountBalance(
         poolState.quoteVault
-      );
-    
-      const basePnl = poolState.baseNeedTakePnl.toNumber() / baseDecimal;
-      const quotePnl = poolState.quoteNeedTakePnl.toNumber() / quoteDecimal;
-    
-      const openOrdersBaseTokenTotal =
+    );
+
+    const basePnl = poolState.baseNeedTakePnl.toNumber() / baseDecimal;
+    const quotePnl = poolState.quoteNeedTakePnl.toNumber() / quoteDecimal;
+
+    const openOrdersBaseTokenTotal =
         openOrders.baseTokenTotal.toNumber() / baseDecimal;
-      const openOrdersQuoteTokenTotal =
+    const openOrdersQuoteTokenTotal =
         openOrders.quoteTokenTotal.toNumber() / quoteDecimal;
-    
-      const base =
+
+    const base =
         (baseTokenAmount.value?.uiAmount || 0) + openOrdersBaseTokenTotal - basePnl;
-      const quote =
+    const quote =
         (quoteTokenAmount.value?.uiAmount || 0) +
         openOrdersQuoteTokenTotal -
         quotePnl;
-    
-      const denominator = new BN(10).pow(poolState.baseDecimal);
-      //const addedLpAccount = tokenAccounts.find((a) => a.accountInfo.mint.equals(poolState.lpMint));
 
-      console.log('====================================================================');
-      console.log("parsePoolInfo: ");
-      console.log("pool total base: ", base);
-      console.log("pool total quote: ", quote);
-      console.log("base vault balance: ", baseTokenAmount.value.uiAmount);
-      console.log("quote vault balance: ", quoteTokenAmount.value.uiAmount);
-      console.log("base tokens in openorders: ", openOrdersBaseTokenTotal);
-      console.log("quote tokens in openorders: ", openOrdersQuoteTokenTotal);
-      console.log("base token decimals: ", poolState.baseDecimal.toNumber());
-      console.log("quote token decimals: ", poolState.quoteDecimal.toNumber());
-      console.log("total lp: ", poolState.lpReserve.div(denominator).toString());
-      //const tokenResp = await connection.getTokenAccountsByOwner(owner, { programId: token.TOKEN_PROGRAM_ID });
-      //const tokenAccounts: TokenAccount[] = [];
-      //for (const { pubkey, account } of tokenResp.value) {
-      //  tokenAccounts.push({ programId: token.TOKEN_PROGRAM_ID, pubkey, accountInfo: SPL_ACCOUNT_LAYOUT.decode(account.data) });
-      //}
-      //const addedLpAccount = tokenAccounts.find((a) => a.accountInfo.mint.equals(poolState.lpMint));
-      //console.log("addedLpAmount: ", (addedLpAccount?.accountInfo.amount.toNumber() || 0) / baseDecimal);
+    const denominator = new BN(10).pow(poolState.baseDecimal);
+    //const addedLpAccount = tokenAccounts.find((a) => a.accountInfo.mint.equals(poolState.lpMint));
+
+    console.log('====================================================================');
+    console.log("parsePoolInfo: ");
+    console.log("pool total base: ", base);
+    console.log("pool total quote: ", quote);
+    console.log("base vault balance: ", baseTokenAmount.value.uiAmount);
+    console.log("quote vault balance: ", quoteTokenAmount.value.uiAmount);
+    console.log("base tokens in openorders: ", openOrdersBaseTokenTotal);
+    console.log("quote tokens in openorders: ", openOrdersQuoteTokenTotal);
+    console.log("base token decimals: ", poolState.baseDecimal.toNumber());
+    console.log("quote token decimals: ", poolState.quoteDecimal.toNumber());
+    console.log("total lp: ", poolState.lpReserve.div(denominator).toString());
+    //const tokenResp = await connection.getTokenAccountsByOwner(owner, { programId: token.TOKEN_PROGRAM_ID });
+    //const tokenAccounts: TokenAccount[] = [];
+    //for (const { pubkey, account } of tokenResp.value) {
+    //  tokenAccounts.push({ programId: token.TOKEN_PROGRAM_ID, pubkey, accountInfo: SPL_ACCOUNT_LAYOUT.decode(account.data) });
+    //}
+    //const addedLpAccount = tokenAccounts.find((a) => a.accountInfo.mint.equals(poolState.lpMint));
+    //console.log("addedLpAmount: ", (addedLpAccount?.accountInfo.amount.toNumber() || 0) / baseDecimal);
 }
 
 export async function calcAmountOut(connection: web3.Connection, poolKeys: LiquidityPoolKeys, rawAmountIn: number, swapInDirection: boolean) {

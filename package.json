@@ -9,7 +9,9 @@
     "start-metadata-metaplex": "ts-node src/index-metadata-metaplex.ts",
     "start-raydium": "ts-node src/raydium-sdk.ts",
     "start-raydium-pool-listener": "ts-node src/raydium-pool-listener.ts",
-    "start-raydium-pool-final": "ts-node src/raydium-pool-final.ts"
+    "start-raydium-pool-listener-compact": "ts-node src/raydium-pool-listener-compact.ts",
+    "start-raydium-pool-final": "ts-node src/raydium-pool-final.ts",
+    "start-raydium-pool-final-compact": "ts-node src/raydium-pool-final-compact.ts"
   },
   "keywords": [],
   "author": "test",

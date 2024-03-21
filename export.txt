@@ -1,75 +1,90 @@
-3tfrsu4KcTmgDyRrarnjT8trv9EgseF51KZSxsaujvru
+Pair: BJ/SOL
+Platform: Raydium v4
+Supply: 1.00m
+Supply in Pool: 75.89%
+
+Market Cap: $1,299.89
+Liquidity: $986.49
+
+Risk Score 
+✅ Mint Revoked: true
+✅ Freeze Revoked: true
+
+Base: AYs13PdTre8AGCkzqUnqabHkAdpXjUb2HR2FSauRcpBp
+Quote: So11111111111111111111111111111111111111112
+
+FFgH6WdgK8L3jube2iUxmnAUoN3zrzuZzJXd98zmE93X
 ====================================================================
 parsePoolInfo: 
-pool total base:  13953.955617508002
-pool total quote:  0.00013889399999999987
-base vault balance:  20079.346164211
-quote vault balance:  0.002063704
+pool total base:  632667.442
+pool total quote:  6.038003733
+base vault balance:  632667.442
+quote vault balance:  6.038003733
 base tokens in openorders:  0
 quote tokens in openorders:  0
-base token decimals:  9
+base token decimals:  3
 quote token decimals:  9
-total lp:  1
+total lp:  1947947
 targetPoolInfo------------------------------------------------------
 {
-  id: '3tfrsu4KcTmgDyRrarnjT8trv9EgseF51KZSxsaujvru',
-  baseMint: 'Hq7edgyzAi4JLMUJ9rJEe9KphqjuVoNFy5in1xC3AEbB',
+  id: 'FFgH6WdgK8L3jube2iUxmnAUoN3zrzuZzJXd98zmE93X',
+  baseMint: 'AYs13PdTre8AGCkzqUnqabHkAdpXjUb2HR2FSauRcpBp',
   quoteMint: 'So11111111111111111111111111111111111111112',
-  lpMint: '9TCqw41kCNk92vGNPsnpa38762EB1nFhvZ3n1hYFnSin',
-  baseDecimals: 9,
+  lpMint: '7V2uoU5t1sxPEhr1RPqAHRpo4Yf9AS6FpxpmJK75dTUD',
+  baseDecimals: 3,
   quoteDecimals: 9,
-  lpDecimals: 9,
+  lpDecimals: 3,
   version: 4,
   programId: '675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8',
   authority: '5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1',
-  openOrders: '4RCjrUh6GGTdY1yKm9KtxqsXyycueWZ9nUcTkhuajSxJ',
-  targetOrders: '5Vnw4wotnVCf2HEhMTYNwu5aLerDEzQTcBU9LuFQrVg7',
-  baseVault: 'HbPQKp3fPAeJdckc6rG8FGikjKoZ3cnihKA2hQ2ZNBJa',
-  quoteVault: 'ASfo8YXd46LPgAnFnNiK9KHuTqdaQqry5tezTsAvDRmn',
+  openOrders: 'ADceHH2rqLTXUAQ4cxF7Py99ce6TaQ28xouK6fXtwLE6',
+  targetOrders: '3Rsqot2HstWx4o8nD9v4MrnyrtvhNZs2ar48nNCaU2p7',
+  baseVault: '4UGeSvSyPTVLeEUaTWCJUd9AUZtJCoCcCnuzfg57UZZX',
+  quoteVault: 'H6dRxEtDbrvGJxqadfjkyCEryjuqKxna6P7EWkUX1Sgj',
   withdrawQueue: '11111111111111111111111111111111',
   lpVault: '11111111111111111111111111111111',
   marketVersion: 3,
   marketProgramId: 'srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX',
-  marketId: 'J7EUTpikvtP31rBhfcmBgWuStMez7NJKUcnDQnj3q3Cd',
-  marketAuthority: '7x2GN5aBPLoZeV1pkiAy9td6akN3ypFbPcnyxCqTV2Ve',
-  marketBaseVault: 'DAHXnGnjNWrgCktfn3dvf84hmgWUkXg8yydL8rDe3gsf',
-  marketQuoteVault: 'C44hMKtRbg8rFTfxmv5tgwU7tLkqCq3CUTpKgjc8VCFg',
-  marketBids: '4tLizZojxMRycbVmcj9PpFzURvq5Vh2nY4LHVw6DpkNY',
-  marketAsks: '3V67KNuk3gbaS1S91tNWi6VsxD5TuPeL8zio3C1ACFAZ',
-  marketEventQueue: 'zUuoMbBp9SSWugaXCxzD6R22CAURoA1wvjmsb3mgNcF',
+  marketId: '8iYfTwRWWETRfMVrZ4ZYQ9b8zmVGkuNztfATmxDVPTqf',
+  marketAuthority: '2YMv44bFqpTSTZXRcQ296wungTThn3em1oddoQpwHE2h',
+  marketBaseVault: 'Hd2CXWhU3HZYBjiLtWedrDkU2yaCUkDEukMVMRB2vzz4',
+  marketQuoteVault: 'a1Q4h9dQQum5hBhEJUUiZZhpxbWnkAc9JsmuNcJQiUF',
+  marketBids: 'FyQLrsaw2zp4FLZ6qGyJKCw8vAJ6oaL93uMCSRoA7vQe',
+  marketAsks: 'BkwaPojKSRQtk2Pf1Uw82pTj17NcRxjt2ZCo83mvU3Wr',
+  marketEventQueue: 'EypinqdJVY22N9jSWy2pGu57iQXP4S5jZbHB9wtqGQ7Z',
   lookupTableAccount: '11111111111111111111111111111111'
 }
 poolInfo------------------------------------------------------------
 status:  6
-baseDecimals:  9
+baseDecimals:  3
 quoteDecimals:  9
-lpDecimals:  9
-baseReserve:  13953955617508
-quoteReserve:  138894
-lpSupply:  1182222382
-startTime:  3/16/2024, 11:21:56 PM
+lpDecimals:  3
+baseReserve:  632667442
+quoteReserve:  6038003733
+lpSupply:  1947947637
+startTime:  3/18/2024, 11:29:47 PM
 amount--------------------------------------------------------------
 amount:  {
   amountIn: TokenAmount {
-    numerator: <BN: 3b9aca00>,
-    denominator: <BN: 3b9aca00>,
+    numerator: <BN: 3e8>,
+    denominator: <BN: 3e8>,
     currency: Token {
-      decimals: 9,
+      decimals: 3,
       symbol: 'UNKNOWN',
       name: 'UNKNOWN',
       programId: [PublicKey [PublicKey(675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8)]],
-      mint: [PublicKey [PublicKey(Hq7edgyzAi4JLMUJ9rJEe9KphqjuVoNFy5in1xC3AEbB)]]
+      mint: [PublicKey [PublicKey(AYs13PdTre8AGCkzqUnqabHkAdpXjUb2HR2FSauRcpBp)]]
     },
     token: Token {
-      decimals: 9,
+      decimals: 3,
       symbol: 'UNKNOWN',
       name: 'UNKNOWN',
       programId: [PublicKey [PublicKey(675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8)]],
-      mint: [PublicKey [PublicKey(Hq7edgyzAi4JLMUJ9rJEe9KphqjuVoNFy5in1xC3AEbB)]]
+      mint: [PublicKey [PublicKey(AYs13PdTre8AGCkzqUnqabHkAdpXjUb2HR2FSauRcpBp)]]
     }
   },
   amountOut: TokenAmount {
-    numerator: <BN: 9>,
+    numerator: <BN: 252b>,
     denominator: <BN: 3b9aca00>,
     currency: Token {
       decimals: 9,
@@ -87,7 +102,7 @@ amount:  {
     }
   },
   minAmountOut: TokenAmount {
-    numerator: <BN: 8>,
+    numerator: <BN: 2365>,
     denominator: <BN: 3b9aca00>,
     currency: Token {
       decimals: 9,
@@ -105,14 +120,14 @@ amount:  {
     }
   },
   currentPrice: Price {
-    numerator: <BN: 21e8e>,
-    denominator: <BN: cb0e8915ae4>,
+    numerator: <BN: 167e626b5>,
+    denominator: <BN: 25b5945f>,
     baseCurrency: Token {
-      decimals: 9,
+      decimals: 3,
       symbol: 'UNKNOWN',
       name: 'UNKNOWN',
       programId: [PublicKey [PublicKey(675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8)]],
-      mint: [PublicKey [PublicKey(Hq7edgyzAi4JLMUJ9rJEe9KphqjuVoNFy5in1xC3AEbB)]]
+      mint: [PublicKey [PublicKey(AYs13PdTre8AGCkzqUnqabHkAdpXjUb2HR2FSauRcpBp)]]
     },
     quoteCurrency: Token {
       decimals: 9,
@@ -121,17 +136,17 @@ amount:  {
       programId: [PublicKey [PublicKey(675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8)]],
       mint: [PublicKey [PublicKey(So11111111111111111111111111111111111111112)]]
     },
-    scalar: Fraction { numerator: <BN: 3b9aca00>, denominator: <BN: 3b9aca00> }
+    scalar: Fraction { numerator: <BN: 3e8>, denominator: <BN: 3b9aca00> }
   },
   executionPrice: Price {
-    numerator: <BN: 9>,
-    denominator: <BN: 3b74a460>,
+    numerator: <BN: 252b>,
+    denominator: <BN: 3e5>,
     baseCurrency: Token {
-      decimals: 9,
+      decimals: 3,
       symbol: 'UNKNOWN',
       name: 'UNKNOWN',
       programId: [PublicKey [PublicKey(675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8)]],
-      mint: [PublicKey [PublicKey(Hq7edgyzAi4JLMUJ9rJEe9KphqjuVoNFy5in1xC3AEbB)]]
+      mint: [PublicKey [PublicKey(AYs13PdTre8AGCkzqUnqabHkAdpXjUb2HR2FSauRcpBp)]]
     },
     quoteCurrency: Token {
       decimals: 9,
@@ -140,36 +155,33 @@ amount:  {
       programId: [PublicKey [PublicKey(675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8)]],
       mint: [PublicKey [PublicKey(So11111111111111111111111111111111111111112)]]
     },
-    scalar: Fraction { numerator: <BN: 3b9aca00>, denominator: <BN: 3b9aca00> }
+    scalar: Fraction { numerator: <BN: 3e8>, denominator: <BN: 3b9aca00> }
   },
-  priceImpact: Percent {
-    numerator: <BN: bc9c19a3b3c>,
-    denominator: <BN: 7e01eeb66d40>
-  },
+  priceImpact: Percent { numerator: <BN: f6317f4>, denominator: <BN: 579a354bee9> },
   fee: TokenAmount {
-    numerator: <BN: 2625a0>,
-    denominator: <BN: 3b9aca00>,
+    numerator: <BN: 3>,
+    denominator: <BN: 3e8>,
     currency: Token {
-      decimals: 9,
+      decimals: 3,
       symbol: 'UNKNOWN',
       name: 'UNKNOWN',
       programId: [PublicKey [PublicKey(675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8)]],
-      mint: [PublicKey [PublicKey(Hq7edgyzAi4JLMUJ9rJEe9KphqjuVoNFy5in1xC3AEbB)]]
+      mint: [PublicKey [PublicKey(AYs13PdTre8AGCkzqUnqabHkAdpXjUb2HR2FSauRcpBp)]]
     },
     token: Token {
-      decimals: 9,
+      decimals: 3,
       symbol: 'UNKNOWN',
       name: 'UNKNOWN',
       programId: [PublicKey [PublicKey(675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8)]],
-      mint: [PublicKey [PublicKey(Hq7edgyzAi4JLMUJ9rJEe9KphqjuVoNFy5in1xC3AEbB)]]
+      mint: [PublicKey [PublicKey(AYs13PdTre8AGCkzqUnqabHkAdpXjUb2HR2FSauRcpBp)]]
     }
   }
 }
 Metaplex Asset------------------------------------------------------
 {
-  publicKey: 'Hq7edgyzAi4JLMUJ9rJEe9KphqjuVoNFy5in1xC3AEbB',
+  publicKey: 'AYs13PdTre8AGCkzqUnqabHkAdpXjUb2HR2FSauRcpBp',
   mint: {
-    publicKey: 'Hq7edgyzAi4JLMUJ9rJEe9KphqjuVoNFy5in1xC3AEbB',
+    publicKey: 'AYs13PdTre8AGCkzqUnqabHkAdpXjUb2HR2FSauRcpBp',
     header: {
       executable: false,
       owner: 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA',
@@ -178,13 +190,13 @@ Metaplex Asset------------------------------------------------------
       exists: true
     },
     mintAuthority: { __option: 'None' },
-    supply: 49372469297499773n,
-    decimals: 9,
+    supply: 1000000000n,
+    decimals: 3,
     isInitialized: true,
     freezeAuthority: { __option: 'None' }
   },
   metadata: {
-    publicKey: 'A6pjmDA4h3MursqDRSAkUEpbyfVrH2QRXeEXHvVDr76S',
+    publicKey: 'CGnTcPPYXhzapbJBLXsYtbjpNqQwfJi93n3gkdkdnbri',
     header: {
       executable: false,
       owner: 'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s',
@@ -193,11 +205,11 @@ Metaplex Asset------------------------------------------------------
       exists: true
     },
     key: 4,
-    updateAuthority: '9cBbzqR688pW6HX5K8AiBa9Ndnmh2vxwNsQAume6xb2n',
-    mint: 'Hq7edgyzAi4JLMUJ9rJEe9KphqjuVoNFy5in1xC3AEbB',
-    name: 'Napster On Cracked Windows 2000',
-    symbol: 'NAPSTER',
-    uri: 'https://bafkreig2rld5qzr5m7poibm2b4nuwwhjxfnnegubcqd4pntw2dp3gnwiby.ipfs.nftstorage.link',
+    updateAuthority: 'AFe7hiaE89sqCVbnqkKHdPbYfQtzvycohGgYhMcztetC',
+    mint: 'AYs13PdTre8AGCkzqUnqabHkAdpXjUb2HR2FSauRcpBp',
+    name: 'biitljus',
+    symbol: 'BJ',
+    uri: 'https://bafkreihvopdyfhzuypbg7kupvu52hh5sqhwo655v2ljen3icwbzjkhaflu.ipfs.nftstorage.link',
     sellerFeeBasisPoints: 0,
     creators: { __option: 'None' },
     primarySaleHappened: false,
