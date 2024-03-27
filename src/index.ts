@@ -10,6 +10,7 @@ const RAYDIUM_POOL_V4_PROGRAM_ID = '675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8
 // const SOL_MINT = 'So11111111111111111111111111111111111111112';
 // const SOL_DECIMALS = 9;
 
+main();
 
 async function main() {
   const endpoint = web3.clusterApiUrl('mainnet-beta');

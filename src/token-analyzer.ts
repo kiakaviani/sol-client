@@ -14,7 +14,8 @@ let SOL_PRICE = 0;
 const SERUM_OPENBOOK_PROGRAM_ID = 'srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX';
 
 export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi, signature: string, programId: string) {
-    getSolPrice((price:number) => { SOL_PRICE = price });
+    await getSolPrice(numCallback);
+    
     console.log("Fetching transaction data...");
     const tx = await connection.getParsedTransaction(signature, { maxSupportedTransactionVersion: 0 });
     if (!tx) {
@@ -159,4 +160,8 @@ function getFriendlyNumber(input: number) {
     if ((input / 1000) >= 1)
         return (input / 1000).toFixed(0) + 'K';
     return input;
+}
+
+var numCallback = (price: number) : void => {
+    SOL_PRICE = price;
 }
