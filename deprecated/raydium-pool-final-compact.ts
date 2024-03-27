@@ -121,6 +121,7 @@ export async function parsePoolInfo(connection: web3.Connection, laccount: web3.
     const denominator = new BN(10).pow(poolState.baseDecimal);
     //const addedLpAccount = tokenAccounts.find((a) => a.accountInfo.mint.equals(poolState.lpMint));
 
+    console.log("poolOpenTime: ", poolState.poolOpenTime);
     console.log("pool basePnl: ", basePnl);
     console.log("pool quotePnl: ", quotePnl);
     console.log("price in SOL: ", quote / base);
@@ -163,6 +164,7 @@ function formatAmmKeysById(connection: web3.Connection, account: web3.KeyedAccou
         marketBids: "",
         marketAsks: "",
         marketEventQueue: "",
+        poolOpenTime: info.poolOpenTime,
         lookupTableAccount: ""
     } as LiquidityPoolJsonInfo;
 }

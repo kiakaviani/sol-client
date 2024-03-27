@@ -11,7 +11,9 @@
     "start-raydium-pool-listener": "ts-node src/raydium-pool-listener.ts",
     "start-raydium-pool-listener-compact": "ts-node src/raydium-pool-listener-compact.ts",
     "start-raydium-pool-final": "ts-node src/raydium-pool-final.ts",
-    "start-raydium-pool-final-compact": "ts-node src/raydium-pool-final-compact.ts"
+    "start-raydium-pool-final-compact": "ts-node src/raydium-pool-final-compact.ts",
+    "start-poolkeys-by-mint": "ts-node src/getPoolkeysByTokenMintAddress.ts",
+    "start-poolkeys-by-tx": "ts-node src/getPoolkeysByTx.ts"
   },
   "keywords": [],
   "author": "test",
@@ -32,6 +34,7 @@
     "@solana/web3.js": "^1.73.0",
     "@types/bn.js": "^5.1.5",
     "bs58": "^5.0.0",
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "telegram": "^2.20.2"
   }
 }

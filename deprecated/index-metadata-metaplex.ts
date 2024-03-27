@@ -8,7 +8,7 @@ import * as mpl_umi_bundle from "@metaplex-foundation/umi-bundle-defaults";
 import * as mpl_umi from "@metaplex-foundation/umi";
 import * as mpl_candy_machine from "@metaplex-foundation/mpl-candy-machine";
 import dotenv from "dotenv"
-import { initializeKeypair } from './initializeKeypair';
+import { initializeKeypair } from '../src/initializeKeypair';
 dotenv.config()
 
 async function main() {
