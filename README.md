@@ -20,7 +20,7 @@ This template is a starting point for writing scripts to interact with the Solan
    - Get token associated accounts.
    - 
 2. Interacting with Metaplex library for advanced token management:
-   - Adding metadata to your token.
-   - Quering token metadata
+   - Adding metadata while minting your tokens.
+   - Querying other tokens metadata.
 3. Get token associated accounts.
    - sdf
