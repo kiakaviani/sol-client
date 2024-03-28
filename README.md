@@ -22,5 +22,5 @@ This template is a starting point for writing scripts to interact with the Solan
 2. Interacting with Metaplex library for advanced token management:
    - Adding metadata while minting your tokens.
    - Querying other tokens metadata.
-3. Get token associated accounts.
+3. Interacting with raydium-sdk library.
    - sdf
