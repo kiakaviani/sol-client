@@ -1,5 +1,5 @@
 import * as web3 from "@solana/web3.js";
-import * as token from '@solana/spl-token'
+import * as token from '@solana/spl-token';
 import { LIQUIDITY_STATE_LAYOUT_V4, MARKET_STATE_LAYOUT_V3, SPL_ACCOUNT_LAYOUT, TokenAccount } from "@raydium-io/raydium-sdk";
 import { OpenOrders } from "@project-serum/serum";
 

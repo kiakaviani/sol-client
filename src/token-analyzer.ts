@@ -1,5 +1,6 @@
 
 import * as web3 from "@solana/web3.js";
+import * as token from '@solana/spl-token';
 import * as mpl_umi from "@metaplex-foundation/umi";
 import BN from "bn.js";
 
@@ -13,9 +14,7 @@ import { OpenOrders } from "@project-serum/serum";
 let SOL_PRICE = 0;
 const SERUM_OPENBOOK_PROGRAM_ID = 'srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX';
 
-export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi, signature: string, programId: string) {
-    await getSolPrice(numCallback);
-    
+export async function analyzeTokenByTxId(connection: web3.Connection, umi: mpl_umi.Umi, signature: string, programId: string) {
     console.log("Fetching transaction data...");
     const tx = await connection.getParsedTransaction(signature, { maxSupportedTransactionVersion: 0 });
     if (!tx) {
@@ -27,9 +26,23 @@ export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi
         console.log('Failed to find lp init instruction in lp init tx');
         return;
     }
-
     //initInstruction.accounts[4] is the pool Id
-    const poolInfo = await getPoolKeys(connection, initInstruction.accounts[4]);
+    await analyzeToken(connection, umi, initInstruction.accounts[4]);
+}
+
+export async function analyzeTokenByMintAddress(connection: web3.Connection, umi: mpl_umi.Umi, mint: string) {
+    console.log("Extracting poolId from the link...");
+    const metaplexAsset = await getMetaplexDigitalAssetInfo(umi, new web3.PublicKey(mint));
+    console.log(metaplexAsset);
+    const poolId = await getAssociatedTokenAddress(new web3.PublicKey(mint), new web3.PublicKey(metaplexAsset.metadata.updateAuthority));
+    console.log(poolId);
+    await analyzeToken(connection, umi, new web3.PublicKey(poolId));
+}
+
+export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi, poolId: web3.PublicKey) {
+    await getSolPrice(numCallback);
+
+    const poolInfo = await getPoolKeys(connection, poolId);
     const metaplexAsset = await getMetaplexDigitalAssetInfo(umi, poolInfo.baseMint);
 
     const baseDenominator = new BN(10).pow(poolInfo.baseDecimal);
@@ -79,7 +92,7 @@ export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi
     const marketCap = Number((quote * SOL_PRICE / base) * actualSupply).toFixed(0)
 
     console.log("This owner has a total of ", ownerAllTokens.length, " tokens.");
-    console.log("Symbol: ", metaplexAsset.metadata.symbol, "(" + metaplexAsset.metadata.name + ")");
+    console.log("Symbol: ", metaplexAsset.metadata.symbol, "(" + metaplexAsset.metadata.name + ")" + " <============================");
     console.log("Actual Supply: " + getFriendlyNumber(actualSupply));
     console.log("MaxLpSupply: ", getFriendlyNumber(maxLpSupply));
     console.log("Balance in LP: ", ((base * 100) / actualSupply).toFixed(1) + "%");
@@ -95,7 +108,9 @@ export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi
     console.log("UpdateAuthority: ", metaplexAsset.metadata.updateAuthority);
     console.log("IsMutable: ", metaplexAsset.metadata.isMutable);
     console.log("PoolOpenTime: ", new Date(Number(poolInfo.poolOpenTime) * 1000).toLocaleString());
+    console.log("Metadata: ", metaplexAsset.metadata.uri);
     console.log("https://dexscreener.com/solana/" + poolInfo.baseMint);
+    console.log("https://www.dextools.io/app/en/solana/pair-explorer/" + poolInfo.baseMint);
 
     var redFlags = 0;
     if (mpl_umi.unwrapOption(metaplexAsset.mint.mintAuthority) !== null || mpl_umi.unwrapOption(metaplexAsset.mint.freezeAuthority) != null) {
@@ -134,6 +149,7 @@ export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi
         //metaplexAsset.metadata.name.toUpperCase().includes("WIF") ||
         metaplexAsset.metadata.name.toUpperCase().includes("BIDEN") ||
         metaplexAsset.metadata.name.toUpperCase().includes("OBAMA") ||
+        metaplexAsset.metadata.name.toUpperCase().includes("PUMP") ||
         metaplexAsset.metadata.name.toUpperCase().includes("HITLER") ||
         metaplexAsset.metadata.name.toUpperCase().includes("MUSK") ||
         metaplexAsset.metadata.name.toUpperCase().includes("TRUMP")) {
@@ -165,6 +181,6 @@ function getFriendlyNumber(input: number) {
     return input;
 }
 
-var numCallback = (price: number) : void => {
+var numCallback = (price: number): void => {
     SOL_PRICE = price;
 }
