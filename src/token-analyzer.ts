@@ -78,8 +78,8 @@ export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi
     const liquidityAmount = Number(Number(quote * SOL_PRICE * 2 / base) * base).toFixed(0);
     const marketCap = Number((quote * SOL_PRICE / base) * actualSupply).toFixed(0)
 
-    console.log("This owner has ", ownerAllTokens.length, " tokens at all.");
-    console.log("symbol: ", metaplexAsset.metadata.symbol, "(" + metaplexAsset.metadata.name + ")");
+    console.log("This owner has a total of ", ownerAllTokens.length, " tokens.");
+    console.log("Symbol: ", metaplexAsset.metadata.symbol, "(" + metaplexAsset.metadata.name + ")");
     console.log("Actual Supply: " + getFriendlyNumber(actualSupply));
     console.log("MaxLpSupply: ", getFriendlyNumber(maxLpSupply));
     console.log("Balance in LP: ", ((base * 100) / actualSupply).toFixed(1) + "%");
@@ -90,11 +90,11 @@ export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi
     console.log("Market CAP: ", marketCap, "$");
     console.log("Liquidity: ", liquidityAmount, "$");
     console.log("Burn amount: ", burnPercent + '%' + " (" + burnAmt + ")");
-    console.log("mintAuthority: ", mpl_umi.unwrapOption(metaplexAsset.mint.mintAuthority));
-    console.log("freezeAuthority: ", mpl_umi.unwrapOption(metaplexAsset.mint.freezeAuthority));
-    console.log("updateAuthority: ", metaplexAsset.metadata.updateAuthority);
-    console.log("isMutable: ", metaplexAsset.metadata.isMutable);
-    console.log("poolOpenTime: ", new Date(Number(poolInfo.poolOpenTime) * 1000).toLocaleString());
+    console.log("MintAuthority: ", mpl_umi.unwrapOption(metaplexAsset.mint.mintAuthority));
+    console.log("FreezeAuthority: ", mpl_umi.unwrapOption(metaplexAsset.mint.freezeAuthority));
+    console.log("UpdateAuthority: ", metaplexAsset.metadata.updateAuthority);
+    console.log("IsMutable: ", metaplexAsset.metadata.isMutable);
+    console.log("PoolOpenTime: ", new Date(Number(poolInfo.poolOpenTime) * 1000).toLocaleString());
     console.log("https://dexscreener.com/solana/" + poolInfo.baseMint);
 
     var redFlags = 0;
@@ -137,15 +137,18 @@ export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi
         metaplexAsset.metadata.name.toUpperCase().includes("HITLER") ||
         metaplexAsset.metadata.name.toUpperCase().includes("MUSK") ||
         metaplexAsset.metadata.name.toUpperCase().includes("TRUMP")) {
-        console.log('Bad Name.');
+        console.log('Frequent Name.');
         redFlags++;
     }
     if (redFlags == 0) {
+        //Write this section in a compatible way with your OS. This code is tested on Windows 10+ OS with Chrome browser installed.
+        //The goal of the following lines is to automatically open rugcheck.xyz and dexscreener.com if redflags of the token are acceptable.
         var command = `start chrome --no-sandbox ${"https://rugcheck.xyz/tokens/" + poolInfo.baseMint}`;
         const { exec } = require('child_process');
         exec(command);
         command = `start chrome --no-sandbox ${"https://dexscreener.com/solana/" + poolInfo.baseMint}`;
         exec(command);
+        //Copy the token mint address to the clipboard.
         require('child_process').spawn('clip').stdin.end(poolInfo.baseMint.toString());
     }
 }
