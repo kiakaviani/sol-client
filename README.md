@@ -52,6 +52,7 @@ After finding txId, just run the scipt using 'npm run start' command and past th
   - Market information (using raydium-sdk)
   - Simple and upgradable logic to analyze extracted information like token liquidity amount, token mint disabled and freeze disabled flags, token burn amount, token owners share percentage and many more. (you can define even much more)
   - Rug pool risk check using rugcheck.xyz provided API (using provided methods in external-apis.ts file. you can change it with another one)
+
 ![Screenshot of dextool.io](https://github.com/kiakaviani/sol-client/blob/main/assets/vscode.png)
 
 ## How it works (advanced):
