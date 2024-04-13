@@ -1,6 +1,6 @@
-# Solana Scripting Template
+# Introduction
 
-This template is a starting point for writing scripts to interact with the Solana blockchain. 
+This project is a starting point for writing scripts to interact with the Solana blockchain. 
 
 ## Projet Structure:
 ```bash
@@ -15,7 +15,7 @@ This template is a starting point for writing scripts to interact with the Solan
         token-analyzer.ts            // Methods to analyze a solana token trust level.
         transaction-manager.ts       // Methods to extracting data from transactions.
 ```
-## Projet Goals:
+## Features:
 1. Interacting with standard solana spl token library:
    - Minting new tokens.
    - 
@@ -24,11 +24,34 @@ This template is a starting point for writing scripts to interact with the Solan
    - Querying other tokens metadata.
 3. Interacting with raydium-sdk library.
    - sdf
-## How it works:
+## Getting started:
 1. Clone the project
+```bash
+/> git clone https://github.com/kiakaviani/sol-client.git
+```
 2. Open it with vscode
 3. install dependencies using command:
 ```bash
 /> npm i
 ```
-5. 
+4. 
+## How it works:
+1. Clone the project
+```bash
+/> git clone https://github.com/kiakaviani/sol-client.git
+```
+2. Open it with vscode
+3. install dependencies using command:
+```bash
+/> npm i
+```
+4. run the index.ts with the following commad:
+```bash
+/> npm run start
+```
+By default index.ts will run an infinite loop that get mint transaction id of a solana token and extract following iformations of it:
+  - Liquidity pool information
+  - mint information
+  - market information
+  - analyze extracted information with some simple logics like token liquidity amount, token mint and freeze disabled flags, token burn amount, token owners share percentage and many more (you can define even much more)
+  - rug pool risk check using rugcheck.xyz provided API (just for test, you can change it with another one)
