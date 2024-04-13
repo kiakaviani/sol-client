@@ -1,0 +1,12 @@
+{
+    "name": "YOUR TOKEN NAME",
+    "symbol": "NAME",
+    "description": "My image address and json file itself are on github, it's better to put them on ipfs.",
+    "image": "https://github.com/kiakaviani/sol-client/blob/main/assets/solana.png",
+    "attributes": [
+      {
+        "trait_type": "Item",
+        "value": "Developer Portal"
+      }
+    ]
+}

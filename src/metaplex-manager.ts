@@ -10,3 +10,11 @@ export async function getMetaplexDigitalAssetInfo(umi: mpl_umi.Umi, poolBaseMint
     const asset = await mpl.fetchDigitalAsset(umi, mint);
     return asset;
 }
+
+export async function mintTokenWithMetadata(umi: mpl_umi.Umi, poolBaseMint: web3.PublicKey) {
+    const metadata = {
+        name: 'YOUR TOKEN NAME',
+        symbol: 'NAME',
+        uri: "https://raw.githubusercontent.com/kiakaviani/sol-client/blob/main/assets/solana.png",
+    };
+}
