@@ -5,7 +5,7 @@ import * as mpl_umi from "@metaplex-foundation/umi";
 import { analyzeTokenByMintAddress, analyzeTokenByTxId } from "./token-analyzer";
 
 const RAYDIUM_POOL_V4_PROGRAM_ID = '675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8';
-// const RAYDIUM_POOL_AUTHORITY = '5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1'
+// const RAYDIUM_POOL_AUTHORITY = '5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1';
 // const SOL_MINT = 'So11111111111111111111111111111111111111112';
 // const SOL_DECIMALS = 9;
 
@@ -35,7 +35,7 @@ function inputLoop(connection: web3.Connection, umi: mpl_umi.Umi) {
       console.log(`commands:\n  [signature]\n  exit|quit|q\n`)
     } else if (line.length > 80) { // Check if the link length is at least 80 characters to avoid corrupt tx or link addresses.
       if (line.includes('www.dextools.io')) {
-        try { await analyzeTokenByMintAddress(connection, umi, line.replace('https://www.dextools.io/app/en/solana/pair-explorer/', '')); } catch { console.log('Failed.'); }
+        try { await analyzeTokenByMintAddress(connection, umi, line.split('/').at(-1)!); } catch { console.log('Failed.'); }
       }
       else if (line.includes('solscan.io')) {
         try { await analyzeTokenByTxId(connection, umi, line.split('/').at(-1)!, RAYDIUM_POOL_V4_PROGRAM_ID); } catch { console.log('Failed.'); }

@@ -7,7 +7,7 @@ import BN from "bn.js";
 import { findInstructionByProgramId } from "./transaction-manager";
 import { getPoolKeys, getTokenAccountsByOwner } from "./raydium-pool-manager";
 import { getMetaplexDigitalAssetInfo } from "./metaplex-manager";
-import { getSolPrice } from "./external-apis";
+import { getSolPrice, rugcheck } from "./external-apis";
 import { getAssociatedTokenAddress } from "@solana/spl-token";
 import { OpenOrders } from "@project-serum/serum";
 
@@ -32,18 +32,25 @@ export async function analyzeTokenByTxId(connection: web3.Connection, umi: mpl_u
 
 export async function analyzeTokenByMintAddress(connection: web3.Connection, umi: mpl_umi.Umi, mint: string) {
     console.log("Extracting poolId from the link...");
-    const metaplexAsset = await getMetaplexDigitalAssetInfo(umi, new web3.PublicKey(mint));
+    console.log("Under development...");
+    /*const metaplexAsset = await getMetaplexDigitalAssetInfo(umi, new web3.PublicKey(mint));
     console.log(metaplexAsset);
     const poolId = await getAssociatedTokenAddress(new web3.PublicKey(mint), new web3.PublicKey(metaplexAsset.metadata.updateAuthority));
     console.log(poolId);
-    await analyzeToken(connection, umi, new web3.PublicKey(poolId));
+    await analyzeToken(connection, umi, new web3.PublicKey(poolId));*/
 }
 
 export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi, poolId: web3.PublicKey) {
-    await getSolPrice(numCallback);
+    await getSolPrice(solPriceCallback);
 
     const poolInfo = await getPoolKeys(connection, poolId);
     const metaplexAsset = await getMetaplexDigitalAssetInfo(umi, poolInfo.baseMint);
+    let rugcheckResult: any = null;
+    await rugcheck(poolInfo.baseMint.toString()).then(result => {
+        rugcheckResult = result;
+    }).catch(error => {
+        console.log(error);
+    });
 
     const baseDenominator = new BN(10).pow(poolInfo.baseDecimal);
     const quoteDenominator = new BN(10).pow(poolInfo.quoteDecimal);
@@ -113,6 +120,18 @@ export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi
     console.log("https://www.dextools.io/app/en/solana/pair-explorer/" + poolInfo.baseMint);
 
     var redFlags = 0;
+    //Analyse external API result------------------------------------
+    if (rugcheckResult && rugcheckResult.topHoldersPercent > 50) {
+        console.log('Top Holders hold ', rugcheckResult.topHoldersPercent, '%');
+        redFlags++;
+    }
+    rugcheckResult.markets.forEach((market:any) => {
+        if (market.lp.lpLockedPct < 100) {
+            console.log('Total Liquidity locked: (', market.lp.lpLockedPct, '%) equal to: $', market.lp.lpLockedUSD);
+            //redFlags++;
+        }
+    });
+    //---------------------------------------------------------------
     if (mpl_umi.unwrapOption(metaplexAsset.mint.mintAuthority) !== null || mpl_umi.unwrapOption(metaplexAsset.mint.freezeAuthority) != null) {
         console.log('Mint, Freeze not null');
         redFlags++;
@@ -181,6 +200,6 @@ function getFriendlyNumber(input: number) {
     return input;
 }
 
-var numCallback = (price: number): void => {
+var solPriceCallback = (price: number): void => {
     SOL_PRICE = price;
 }
