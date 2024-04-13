@@ -40,8 +40,11 @@ This project is a starting point for writing scripts to interact with the Solana
 ```
 ## How it works:
 By default 'index.ts' executes an infinite loop that gets the transaction id of a solana token mint instruction and extracts iformation from it.
+
 (you can fing txId of a solana mint by going to dex explorers like https://www.dextools.io/app/en/solana/pool-explorer and click on the transaction icon as shown in the following image)
+
 ![Screenshot of dextool.io](https://github.com/kiakaviani/sol-client/blob/main/assets/dextools.png)
+
 After finding txId, just run the scipt using 'npm run start' command and past the txId in the command line input, following informations will appear:
   - Liquidity pool information
   - mint information
