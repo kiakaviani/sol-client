@@ -55,5 +55,11 @@ After finding txId, just run the scipt using 'npm run start' command and past th
 
 ## How it works (advanced):
 You can use methods provided in metaplex-manager.ts, raydium-pool-manager.ts and spl-token-helpers.ts by uncommenting them on index.js.
+> [!NOTE]
+> **Do not forget to comment other sections in the 'index.js' main() method when testing each section.**
 
-**Do not forget to comment other sections in the 'index.js' main() method when testing each section.**
+## Refrences:
+https://developers.metaplex.com/token-metadata/token-standard
+
+https://spl.solana.com/token
+
