@@ -29,6 +29,7 @@ You can find answers to these questions:
 3. Interacting with raydium-sdk library (raydium-pool-manager.ts):
    - Getting liquidity pool informations of a solana token ( LIQUIDITY_STATE_LAYOUT_V4 )
 4. Communicate with external APIs like coingecko.com and rugcheck.xyz for additional data (external-apis.ts)
+
 ## Getting started:
 1. Clone the project
 ```bash
