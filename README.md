@@ -6,6 +6,7 @@ You can find answers to these questions:
 - How to mint a solana token with metadata using metaplex foundation.
 - How to use radium-sdk to read liquidity pool data, market data and parse the obtained information for further use.
 - How to analyze the potential growth of a Solana Token.
+
 ## Projet Structure:
 ```bash
 +---src
@@ -29,6 +30,7 @@ You can find answers to these questions:
 3. Interacting with raydium-sdk library (raydium-pool-manager.ts):
    - Getting liquidity pool informations of a solana token ( LIQUIDITY_STATE_LAYOUT_V4 )
 4. Communicate with external APIs like coingecko.com and rugcheck.xyz for additional data (external-apis.ts)
+
 ## Getting started:
 1. Clone the project
 ```bash
@@ -58,6 +60,7 @@ After finding txId, just run the scipt using 'npm run start' command and past th
   - Rug pool risk check using rugcheck.xyz provided API (using provided methods in external-apis.ts file. you can change it with another one)
 
 ![Screenshot of dextool.io](https://github.com/kiakaviani/sol-client/blob/main/assets/vscode.png)
+
 
 ## How it works (advanced):
 You can use methods provided in metaplex-manager.ts, raydium-pool-manager.ts and spl-token-helpers.ts by uncommenting them on index.js.
