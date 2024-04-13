@@ -16,14 +16,15 @@ This project is a starting point for writing scripts to interact with the Solana
         transaction-manager.ts       // Methods to extracting data from transactions.
 ```
 ## Features:
-1. Interacting with standard solana spl token library:
+1. Interacting with standard solana spl token library (spl-token-helpers.ts):
    - Minting new tokens.
-   - 
-2. Interacting with Metaplex library for advanced token management:
+   - Queriny token accounts and informations.
+2. Interacting with Metaplex foundation standards for advanced token management (metaplex-manager.ts):
    - Adding metadata while minting your tokens.
    - Querying other tokens metadata.
-3. Interacting with raydium-sdk library.
-   - sdf
+3. Interacting with raydium-sdk library (raydium-pool-manager.ts):
+   - Getting liquidity pool informations of a solana token ( LIQUIDITY_STATE_LAYOUT_V4 )
+4. Communicate with external APIs like coingecko.com and rugcheck.xyz for additional data (external-apis.ts)
 ## Getting started:
 1. Clone the project
 ```bash
@@ -38,16 +39,21 @@ This project is a starting point for writing scripts to interact with the Solana
 ```bash
 /> npm run start
 ```
-## How it works:
+## How it works (simple):
 By default 'index.ts' executes an infinite loop that gets the transaction id of a solana token mint instruction and extracts iformation from it.
 
-(you can fing txId of a solana mint by going to dex explorers like https://www.dextools.io/app/en/solana/pool-explorer and click on the transaction icon as shown in the following image)
+(You can find the mint transaction Id of a solana token by going to dex explorers like https://www.dextools.io/app/en/solana/pool-explorer and click on the transaction icon as shown in the following image)
 
 ![Screenshot of dextool.io](https://github.com/kiakaviani/sol-client/blob/main/assets/dextools.png)
 
 After finding txId, just run the scipt using 'npm run start' command and past the txId in the command line input, following informations will appear:
-  - Liquidity pool information
-  - mint information
-  - market information
-  - analyze extracted information with some simple logics like token liquidity amount, token mint and freeze disabled flags, token burn amount, token owners share percentage and many more (you can define even much more)
-  - rug pool risk check using rugcheck.xyz provided API (just for test, you can change it with another one)
+  - Liquidity pool information (using raydium-sdk)
+  - Mint information (using metaplex-foundation)
+  - Market information (using raydium-sdk)
+  - Simple and upgradable logic to analyze extracted information like token liquidity amount, token mint disabled and freeze disabled flags, token burn amount, token owners share percentage and many more. (you can define even much more)
+  - Rug pool risk check using rugcheck.xyz provided API (using provided methods in external-apis.ts file. you can change it with another one)
+
+## How it works (advanced):
+You can use methods provided in metaplex-manager.ts, raydium-pool-manager.ts and spl-token-helpers.ts by uncommenting them on index.js.
+
+**Do not forget to comment other sections in the 'index.js' main() method when testing each section.**
