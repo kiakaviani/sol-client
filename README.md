@@ -6,6 +6,7 @@ You can find answers to these questions:
 - How to mint a solana token with metadata using metaplex foundation.
 - How to use radium-sdk to read liquidity pool data, market data and parse the obtained information for further use.
 - How to analyze the potential growth of a Solana Token.
+
 ## Projet Structure:
 ```bash
 +---src
