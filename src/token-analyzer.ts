@@ -166,11 +166,17 @@ export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi
     }
     if (metaplexAsset.metadata.name.toUpperCase().includes("HAT") ||
         metaplexAsset.metadata.name.toUpperCase().includes("WIF") ||
-        metaplexAsset.metadata.name.toUpperCase().includes("BIDEN") ||
-        metaplexAsset.metadata.name.toUpperCase().includes("OBAMA") ||
+        metaplexAsset.metadata.name.toUpperCase().includes("BIDON") ||
+        metaplexAsset.metadata.name.toUpperCase().includes("SOLANA") ||
+        metaplexAsset.metadata.name.toUpperCase().includes("USDT") ||
+        metaplexAsset.metadata.name.toUpperCase().includes("USDC") ||
+        metaplexAsset.metadata.name.toUpperCase().includes("HAT") ||
+        metaplexAsset.metadata.name.toUpperCase().includes("CAT") ||
+        metaplexAsset.metadata.name.toUpperCase().includes("DOG") ||
+        metaplexAsset.metadata.name.toUpperCase().includes("MEW") ||
         metaplexAsset.metadata.name.toUpperCase().includes("PUMP") ||
         metaplexAsset.metadata.name.toUpperCase().includes("MUSK") ||
-        metaplexAsset.metadata.name.toUpperCase().includes("TRUMP")) {
+        metaplexAsset.metadata.name.toUpperCase().includes("THRUMP")) {
         console.log('Frequent Name.');
         redFlags++;
     }
