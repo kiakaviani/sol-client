@@ -14,6 +14,7 @@ export async function getMetaplexDigitalAssetInfo(umi: mpl_umi.Umi, poolBaseMint
 
 export async function mintTokenWithMetadata(connection: web3.Connection, umi: mpl_umi.Umi) {
     
+    // My json file is on github, it's better to put it on ipfs.
     const metadata = {
         name: 'YOUR TOKEN NAME',
         symbol: 'NAME',

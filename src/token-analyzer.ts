@@ -176,7 +176,8 @@ export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi
         metaplexAsset.metadata.name.toUpperCase().includes("MEW") ||
         metaplexAsset.metadata.name.toUpperCase().includes("PUMP") ||
         metaplexAsset.metadata.name.toUpperCase().includes("MUSK") ||
-        metaplexAsset.metadata.name.toUpperCase().includes("RUMP")) {
+        metaplexAsset.metadata.name.toUpperCase().includes("RUMP") ||
+        metaplexAsset.metadata.name.toUpperCase().includes("PEPE")) {
         console.log('Frequent Name.');
         redFlags++;
     }
