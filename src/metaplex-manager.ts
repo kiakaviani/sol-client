@@ -13,6 +13,7 @@ export async function getMetaplexDigitalAssetInfo(umi: mpl_umi.Umi, poolBaseMint
 }
 
 export async function mintTokenWithMetadata(connection: web3.Connection, umi: mpl_umi.Umi) {
+    
     const metadata = {
         name: 'YOUR TOKEN NAME',
         symbol: 'NAME',
