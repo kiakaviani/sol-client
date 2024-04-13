@@ -52,11 +52,13 @@ After finding txId, just run the scipt using 'npm run start' command and past th
   - Market information (using raydium-sdk)
   - Simple and upgradable logic to analyze extracted information like token liquidity amount, token mint disabled and freeze disabled flags, token burn amount, token owners share percentage and many more. (you can define even much more)
   - Rug pool risk check using rugcheck.xyz provided API (using provided methods in external-apis.ts file. you can change it with another one)
+![Screenshot of dextool.io](https://github.com/kiakaviani/sol-client/blob/main/assets/vscode.png)
 
 ## How it works (advanced):
 You can use methods provided in metaplex-manager.ts, raydium-pool-manager.ts and spl-token-helpers.ts by uncommenting them on index.js.
 > [!NOTE]
 > **Do not forget to comment other sections in the 'index.js' main() method when testing each section.**
+
 
 ## Refrences:
 https://developers.metaplex.com/token-metadata/token-standard
