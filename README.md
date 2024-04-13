@@ -17,10 +17,18 @@ This template is a starting point for writing scripts to interact with the Solan
 ```
 ## Projet Goals:
 1. Interacting with standard solana spl token library:
-   - Get token associated accounts.
+   - Minting new tokens.
    - 
 2. Interacting with Metaplex library for advanced token management:
    - Adding metadata while minting your tokens.
    - Querying other tokens metadata.
 3. Interacting with raydium-sdk library.
    - sdf
+## How it works:
+1. Clone the project
+2. Open it with vscode
+3. install dependencies using command:
+```bash
+/> npm i
+```
+5. 
