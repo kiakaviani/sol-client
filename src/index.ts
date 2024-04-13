@@ -3,6 +3,8 @@ import * as mpl_umi_bundle from "@metaplex-foundation/umi-bundle-defaults";
 import * as mpl_umi from "@metaplex-foundation/umi";
 
 import { analyzeTokenByMintAddress, analyzeTokenByTxId } from "./token-analyzer";
+import { mintTokenWithMetadata } from "./metaplex-manager";
+import { splmain } from "./spl-token-helpers";
 
 const RAYDIUM_POOL_V4_PROGRAM_ID = '675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8';
 // const RAYDIUM_POOL_AUTHORITY = '5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1';
@@ -18,7 +20,27 @@ async function main() {
   });
   const umi = mpl_umi_bundle.createUmi(connection);
 
+  // =======================================
+  // Section 1 (Default)
+  // Token Analizing
+  // =======================================
   inputLoop(connection, umi);
+
+
+
+  // =======================================
+  // Section 2
+  // Using metaplex foundation to mint a new solana token with metadata
+  // =======================================
+  // mintTokenWithMetadata(connection, umi);
+
+
+  
+  // =======================================
+  // Section 3
+  // Using standard solana spl token library
+  // =======================================
+  // splmain();
 }
 
 function inputLoop(connection: web3.Connection, umi: mpl_umi.Umi) {

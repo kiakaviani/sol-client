@@ -62,7 +62,7 @@ async function grantFreezeAuthotiry(connection: web3.Connection, payer: web3.Key
 
 async function getAllWalletAccounts(connection: web3.Connection, wallet: string) {
     const accounts = await connection.getParsedProgramAccounts(
-        token.TOKEN_PROGRAM_ID, // new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
+        token.TOKEN_PROGRAM_ID, 
         {
             filters: [
                 {
@@ -97,7 +97,7 @@ async function getTokenLargestAccounts(connection: web3.Connection, mint: web3.P
 
 
 //Usage Examples=================================================================
-async function main() {
+export async function splmain() {
     const connection = new web3.Connection(web3.clusterApiUrl("devnet"), {
         commitment: "confirmed",
     });
@@ -139,11 +139,3 @@ async function main() {
     //await getAllWalletAccounts(connection, 'WALLET ADDRESS');
     await getTokenLargestAccounts(connection, mint);
 }
-
-main().then(() => {
-    console.log("Finished successfully")
-    process.exit(0)
-}).catch((error) => {
-    console.log(error)
-    process.exit(1)
-})
