@@ -165,19 +165,19 @@ export async function analyzeToken(connection: web3.Connection, umi: mpl_umi.Umi
         redFlags++;
     }
     if (metaplexAsset.metadata.name.toUpperCase().includes("HAT") ||
-        //metaplexAsset.metadata.name.toUpperCase().includes("WIF") ||
+        metaplexAsset.metadata.name.toUpperCase().includes("WIF") ||
         metaplexAsset.metadata.name.toUpperCase().includes("BIDEN") ||
         metaplexAsset.metadata.name.toUpperCase().includes("OBAMA") ||
         metaplexAsset.metadata.name.toUpperCase().includes("PUMP") ||
-        metaplexAsset.metadata.name.toUpperCase().includes("HITLER") ||
         metaplexAsset.metadata.name.toUpperCase().includes("MUSK") ||
         metaplexAsset.metadata.name.toUpperCase().includes("TRUMP")) {
         console.log('Frequent Name.');
         redFlags++;
     }
     if (redFlags == 0) {
-        //Write this section in a compatible way with your OS. This code is tested on Windows 10+ OS with Chrome browser installed.
-        //The goal of the following lines is to automatically open rugcheck.xyz and dexscreener.com if redflags of the token are acceptable.
+        // This part of code opens some websites using chrome browser with the token address for the faster buy or double-check operation.
+        // Write this section in a compatible way with your OS. This code is tested on Windows 10+ OS with Chrome browser installed.
+        // The goal of the following lines is to automatically open rugcheck.xyz and dexscreener.com if redflags of the token are acceptable.
         var command = `start chrome --no-sandbox ${"https://rugcheck.xyz/tokens/" + poolInfo.baseMint}`;
         const { exec } = require('child_process');
         exec(command);
