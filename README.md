@@ -16,14 +16,15 @@ This project is a starting point for writing scripts to interact with the Solana
         transaction-manager.ts       // Methods to extracting data from transactions.
 ```
 ## Features:
-1. Interacting with standard solana spl token library:
+1. Interacting with standard solana spl token library (spl-token-helpers.ts):
    - Minting new tokens.
-   - 
-2. Interacting with Metaplex foundation standards for advanced token management:
+   - Queriny token accounts and informations.
+2. Interacting with Metaplex foundation standards for advanced token management (metaplex-manager.ts):
    - Adding metadata while minting your tokens.
    - Querying other tokens metadata.
-3. Interacting with raydium-sdk library.
+3. Interacting with raydium-sdk library (raydium-pool-manager.ts):
    - Getting liquidity pool informations of a solana token ( LIQUIDITY_STATE_LAYOUT_V4 )
+4. Communicate with external APIs like coingecko.com and rugcheck.xyz for additional data (external-apis.ts)
 ## Getting started:
 1. Clone the project
 ```bash
