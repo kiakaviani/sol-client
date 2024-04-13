@@ -4,16 +4,7 @@
   "description": "Starter template for a Solana client script",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "start-metadata": "ts-node src/index-metadata.ts",
-    "start-metadata-metaplex": "ts-node src/index-metadata-metaplex.ts",
-    "start-raydium": "ts-node src/raydium-sdk.ts",
-    "start-raydium-pool-listener": "ts-node src/raydium-pool-listener.ts",
-    "start-raydium-pool-listener-compact": "ts-node src/raydium-pool-listener-compact.ts",
-    "start-raydium-pool-final": "ts-node src/raydium-pool-final.ts",
-    "start-raydium-pool-final-compact": "ts-node src/raydium-pool-final-compact.ts",
-    "start-poolkeys-by-mint": "ts-node src/getPoolkeysByTokenMintAddress.ts",
-    "start-poolkeys-by-tx": "ts-node src/getPoolkeysByTx.ts"
+    "start": "ts-node src/index.ts"
   },
   "keywords": [],
   "author": "test",
