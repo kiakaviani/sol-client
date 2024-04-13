@@ -34,22 +34,18 @@ This project is a starting point for writing scripts to interact with the Solana
 ```bash
 /> npm i
 ```
-4. 
-## How it works:
-1. Clone the project
-```bash
-/> git clone https://github.com/kiakaviani/sol-client.git
-```
-2. Open it with vscode
-3. install dependencies using command:
-```bash
-/> npm i
-```
 4. run the index.ts with the following commad:
 ```bash
 /> npm run start
 ```
-By default index.ts will run an infinite loop that get mint transaction id of a solana token and extract following iformations of it:
+## How it works:
+By default 'index.ts' executes an infinite loop that gets the transaction id of a solana token mint instruction and extracts iformation from it.
+
+(you can fing txId of a solana mint by going to dex explorers like https://www.dextools.io/app/en/solana/pool-explorer and click on the transaction icon as shown in the following image)
+
+![Screenshot of dextool.io](https://github.com/kiakaviani/sol-client/blob/main/assets/dextools.png)
+
+After finding txId, just run the scipt using 'npm run start' command and past the txId in the command line input, following informations will appear:
   - Liquidity pool information
   - mint information
   - market information
