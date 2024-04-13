@@ -1,6 +1,6 @@
 
 
-
+// Check coingecko.com for live solana token price
 export async function getSolPrice(callback: (price: number) => void) {
     var url = "https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd";
     global.XMLHttpRequest = require("xhr2");
@@ -19,6 +19,7 @@ export async function getSolPrice(callback: (price: number) => void) {
     xhr.send();
 }
 
+// Check rugcheck.xyz for additional information about token situation
 export function rugcheck(mint: string): Promise<any> {
     var url = `https://api.rugcheck.xyz/v1/tokens/${mint}/report`;
     global.XMLHttpRequest = require("xhr2");
