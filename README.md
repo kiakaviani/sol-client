@@ -59,6 +59,7 @@ After finding txId, just run the scipt using 'npm run start' command and past th
 
 ![Screenshot of dextool.io](https://github.com/kiakaviani/sol-client/blob/main/assets/vscode.png)
 
+
 ## How it works (advanced):
 You can use methods provided in metaplex-manager.ts, raydium-pool-manager.ts and spl-token-helpers.ts by uncommenting them on index.js.
 > [!NOTE]
